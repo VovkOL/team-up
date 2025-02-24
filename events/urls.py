@@ -4,6 +4,8 @@ from .views import (
 )
 
 
+app_name = "events"
+
 urlpatterns = [
     path("", index, name="index"),
 ]
