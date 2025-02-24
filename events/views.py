@@ -1,10 +1,8 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from events.models import Location, SportType, Athlete, TrainingSession
 
 
-@login_required
 def index(request):
     num_locations = Location.objects.count()
     num_sport_types = SportType.objects.count()
@@ -22,4 +20,4 @@ def index(request):
         "num_visits": num_visits + 1,
     }
 
-    return render(request, "events/index.html", conyext=context)
+    return render(request, "events/index.html", context=context)
