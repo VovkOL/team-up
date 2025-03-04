@@ -16,6 +16,9 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("events:location-detail", args=[str(self.id)])
+
 
 class SportType(models.Model):
     name = models.CharField(max_length=100, unique=True)
