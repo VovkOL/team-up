@@ -1,0 +1,45 @@
+{% extends 'layouts/base-presentation.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %} TeamUp {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block body_class %} locations-page {% endblock body_class %}
+
+{% block content %}
+  <section class="pt-5 pb-5 mt-5">
+    <div class="container mt-4">
+      <h1>Location List</h1>
+      <form method="get" action="" class="mb-4">
+        <div class="input-group">
+          {{ search_form|crispy }}
+          <button type="submit" class="btn btn-secondary" aria-label="Search">🔍</button>
+        </div>
+      </form>
+      {% if location_list %}
+        <table class="table">
+          <tr>
+            <th>ID</th>
+            <th>City</th>
+            <th>Address</th>
+          </tr>
+          {% for location in location_list %}
+            <tr>
+              <td>
+                <a href="{{ location.get_absolute_url }}">{{ location.id }}</a>
+              </td>
+              <td>
+                {{ location.name }}
+              </td>
+              <td>
+                {{ location.address }}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}
