@@ -47,3 +47,7 @@ class LocationListView(generic.ListView):
                 name__icontains=form.cleaned_data["name"]
             )
         return self.queryset
+
+
+class LocationDetailView(generic.DetailView):
+    model = Location
