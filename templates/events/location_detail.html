@@ -1,0 +1,33 @@
+{% extends "layouts/base-presentation.html" %}
+{% block content %}
+  <section class="pt-5 pb-5 mt-5">
+  <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
+    <div class="container">
+      <div class="row py-4">
+        <div class="col-lg-6">
+          <h3 class="text-gradient text-primary mb-0 mt-2">City: {{ location.name }}</h3>
+          <br>
+          <h3>Address:{{ location.address }}</h3>
+        </div>
+        <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
+          <div class="p-3 info-horizontal">
+            <div class="icon icon-shape rounded-circle bg-gradient-primary shadow text-center">
+              <i class="fas fa-ship opacity-10"></i>
+            </div>
+            <div class="description ps-3">
+              <p class="mb-0">
+                {% if location.description %}
+                  {{ location.description }}
+                {% else %}
+                  No information about this location.
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+  <!-- -------- END Features w/ icons and text on left & gradient title and text on right -------- -->
+
