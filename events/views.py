@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
+from django.views.generic import CreateView
+from rest_framework.reverse import reverse_lazy
 
 from events.forms import LocationSearchForm
 from events.models import Location, SportType, Athlete, TrainingSession
@@ -51,3 +53,11 @@ class LocationListView(generic.ListView):
 
 class LocationDetailView(generic.DetailView):
     model = Location
+
+
+class LocationCreateView(generic.CreateView):
+    model = Location
+    success_url = reverse_lazy("events:location-list")
+    template_name = "events/location_form.html"
+    fields = "__all__"
+
