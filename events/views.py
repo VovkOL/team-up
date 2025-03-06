@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
+from django.contrib import messages
+
 from django.views.generic import CreateView
 from rest_framework.reverse import reverse_lazy
 
@@ -61,3 +63,9 @@ class LocationCreateView(generic.CreateView):
     template_name = "events/location_form.html"
     fields = "__all__"
 
+
+class LocationUpdateView(generic.UpdateView):
+    model = Location
+    success_url = reverse_lazy("events:location-list")
+    template_name = "events/location_form.html"
+    fields = "__all__"
