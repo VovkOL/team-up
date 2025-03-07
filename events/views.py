@@ -69,3 +69,10 @@ class LocationUpdateView(generic.UpdateView):
     success_url = reverse_lazy("events:location-list")
     template_name = "events/location_form.html"
     fields = "__all__"
+
+
+class SportTypeCreateView(generic.CreateView):
+    model = SportType
+    success_url = reverse_lazy("events:sport-type-list")
+    template_name = "events/sport-type_form.html"
+    fields = "__all__"
