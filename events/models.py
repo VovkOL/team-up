@@ -22,6 +22,8 @@ class Location(models.Model):
 
 class SportType(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    min_athletes = models.PositiveIntegerField(blank=True, null=True)
+    max_athletes = models.PositiveIntegerField(blank=True, null=True)
 
     class Meta:
         ordering = ("name", )
