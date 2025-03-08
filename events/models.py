@@ -31,6 +31,9 @@ class SportType(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("events:sport-type-detail", args=[str(self.id)])
+
 class Athlete(AbstractUser):
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
     friends = models.ManyToManyField("self", symmetrical=True, blank=True)
