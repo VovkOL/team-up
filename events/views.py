@@ -99,3 +99,9 @@ class SportTypeListView(generic.ListView):
                 name__icontains=form.cleaned_data["name"]
             )
         return self.queryset
+
+
+class SportTypeDetailView(generic.DetailView):
+    model = SportType
+    context_object_name = "sport_type"
+    template_name = "events/sport-type_detail.html"
