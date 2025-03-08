@@ -19,4 +19,5 @@ urlpatterns = [
     path("location/<int:pk>/update/", LocationUpdateView.as_view(), name="location-update"),
     path("sport-type/create/", SportTypeCreateView.as_view(), name="sport-type-create"),
     path("sport-types/", SportTypeListView.as_view(), name="sport-type-list"),
+    path("sport-type/<int:pk>/", SportTypeDetailView.as_view(), name="sport-type-detail"),
 ]
