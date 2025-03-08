@@ -1,34 +1,33 @@
 {% extends "layouts/base-presentation.html" %}
+{% load static %}
 
-{% block body_class %}d-flex flex-column min-vh-100{% endblock %}
+{% block title %}Location Details{% endblock %}
 
 {% block content %}
-  <section class="pt-5 pb-5 mt-5 flex-grow-1">
-    <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
-    <div class="container">
-      <div class="row py-4">
-        <div class="col-lg-6">
-          <h3 class="text-gradient text-primary mb-0 mt-2">City: {{ location.name }}</h3>
-          <br>
-          <h3>Address: {{ location.address }}</h3>
-          <br>
-          <a class="btn btn-secondary px-4 py-2 rounded-2" href="{% url 'events:location-update' pk=location.id %}">Update</a>
-        </div>
-        <div class="col-lg-6 mt-lg-0 mt-5 ps-lg-0 ps-0">
-          <div class="p-3 info-horizontal">
-            <h5>Description</h5>
-            <br>
-            <div class="icon icon-shape rounded-circle bg-gradient-primary shadow text-center">
-              <i class="fas fa-ship opacity-10"></i>
-            </div>
-            <div class="description ps-3">
-              <p class="mb-0">
-                {% if location.description %}
-                  {{ location.description }}
-                {% else %}
-                  No information about this location.
-                {% endif %}
-              </p>
+  <section class="pt-6 pb-5 mt-2">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-4">
+            <h1 class="text-gradient text-primary fw-bold">Location Details</h1>
+            <p class="text-muted">Explore details about this location, including its name, address, and description.</p>
+          </div>
+          <div class="card shadow-lg border-0 p-3 rounded-4 blur">
+            <div class="card-body">
+              <h2 class="text-gradient text-primary text-center fw-bold mb-4">{{ location.name }}</h2>
+              <hr class="mx-auto w-50">
+              <div class="mb-4">
+                <h5 class="text-muted">Address</h5>
+                <p class="fw-bold text-dark">{{ location.address|default:"No address provided" }}</p>
+              </div>
+              <div class="mb-4">
+                <h5 class="text-muted">Description</h5>
+                <p class="text-dark">{{ location.description|default:"No description available" }}</p>
+              </div>
+              <div class="mt-5 d-flex justify-content-center gap-4">
+                <a href="{% url 'events:location-list' %}" class="btn btn-outline-secondary px-5 py-3 rounded-3">Back to List</a>
+                <a href="{% url 'events:location-update' location.id %}" class="btn btn-primary px-5 py-3 rounded-3 shadow-sm">Edit</a>
+              </div>
             </div>
           </div>
         </div>
@@ -36,3 +35,4 @@
     </div>
   </section>
 {% endblock %}
+
