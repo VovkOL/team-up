@@ -105,3 +105,11 @@ class SportTypeDetailView(generic.DetailView):
     model = SportType
     context_object_name = "sport_type"
     template_name = "events/sport-type_detail.html"
+
+
+class SportTypeUpdateView(generic.UpdateView):
+    model = SportType
+    success_url = reverse_lazy("events:sport-type-list")
+    context_object_name = "sport_type"
+    template_name = "events/sport-type_form.html"
+    fields = "__all__"
