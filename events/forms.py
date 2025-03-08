@@ -1,4 +1,7 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+
+from events.models import Athlete, Location
 
 
 class LocationSearchForm(forms.Form):
@@ -17,3 +20,24 @@ class SportTypeSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by sport type"}),
     )
+
+
+class AthleteCreationForm(UserCreationForm):
+    location = forms.ModelChoiceField(
+        queryset=Location.objects.values_list("name", flat=True).distinct(),
+        required=False,
+        empty_label="Select a location",
+    )
+
+    class Meta(UserCreationForm.Meta):
+        model = Athlete
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "location",
+            "friends",
+            "password1",
+            "password2",
+        )
+
