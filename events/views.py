@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.views.generic import CreateView
 from rest_framework.reverse import reverse_lazy
 
-from events.forms import LocationSearchForm
+from events.forms import LocationSearchForm, SportTypeSearchForm
 from events.models import Location, SportType, Athlete, TrainingSession
 
 
@@ -87,7 +87,7 @@ class SportTypeListView(generic.ListView):
     def get_context_data(self, **kwargs):
         context =super(SportTypeListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = LocationSearchForm(
+        context["search_form"] = SportTypeSearchForm(
             initial={"name": name}
         )
         return context
