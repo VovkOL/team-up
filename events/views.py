@@ -76,3 +76,26 @@ class SportTypeCreateView(generic.CreateView):
     success_url = reverse_lazy("events:sport-type-list")
     template_name = "events/sport-type_form.html"
     fields = "__all__"
+
+
+class SportTypeListView(generic.ListView):
+    model = SportType
+    context_object_name = "sport_type_list"
+    template_name = "events/sport-type_list.html"
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context =super(SportTypeListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = LocationSearchForm(
+            initial={"name": name}
+        )
+        return context
+
+    def get_queryset(self):
+        form = LocationSearchForm(self.request.GET)
+        if form.is_valid():
+            return SportType.objects.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+        return self.queryset
