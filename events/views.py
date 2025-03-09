@@ -123,3 +123,25 @@ class AthleteCreateView(generic.CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+
+class AthleteListView(generic.ListView):
+    model = Athlete
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super(AthleteListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = AthleteSearchForm(
+            initial={"username": username}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = AthleteSearchForm(self.request.GET)
+        if form.is_valid():
+            return Athlete.objects.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
+        return queryset
