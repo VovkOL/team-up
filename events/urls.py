@@ -6,6 +6,7 @@ from .views import (
     LocationCreateView,
     LocationUpdateView,
     SportTypeCreateView, SportTypeListView, SportTypeDetailView, SportTypeUpdateView, AthleteCreateView,
+    AthleteListView,
 )
 
 
@@ -22,4 +23,5 @@ urlpatterns = [
     path("sport-type/<int:pk>/", SportTypeDetailView.as_view(), name="sport-type-detail"),
     path("sport-type/<int:pk>/update/", SportTypeUpdateView.as_view(), name="sport-type-update"),
     path("athlete/create/", AthleteCreateView.as_view(), name="athlete-create"),
+    path("athletes/", AthleteListView.as_view(), name="athlete-list"),
 ]
