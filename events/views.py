@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.views.generic import CreateView
 from rest_framework.reverse import reverse_lazy
 
-from events.forms import LocationSearchForm, SportTypeSearchForm, AthleteCreationForm
+from events.forms import LocationSearchForm, SportTypeSearchForm, AthleteCreationForm, AthleteSearchForm
 from events.models import Location, SportType, Athlete, TrainingSession
 
 
@@ -117,6 +117,9 @@ class SportTypeUpdateView(generic.UpdateView):
 
 class AthleteCreateView(generic.CreateView):
     model = Athlete
-    success_url = reverse_lazy("events:athlete-detail")
+    success_url = reverse_lazy('events:athlete-list')
     template_name = "events/athlete_form.html"
     form_class = AthleteCreationForm
+
+    def form_valid(self, form):
+        return super().form_valid(form)
