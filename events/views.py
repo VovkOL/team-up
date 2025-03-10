@@ -1,4 +1,6 @@
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 from django.shortcuts import render
 from django.views import generic
 from django.contrib import messages
@@ -6,7 +8,8 @@ from django.contrib import messages
 from django.views.generic import CreateView
 from rest_framework.reverse import reverse_lazy
 
-from events.forms import LocationSearchForm, SportTypeSearchForm, AthleteCreationForm, AthleteSearchForm
+from events.forms import LocationSearchForm, SportTypeSearchForm, AthleteCreationForm, AthleteSearchForm, \
+    AthleteUpdateForm
 from events.models import Location, SportType, Athlete, TrainingSession
 
 
@@ -30,7 +33,7 @@ def index(request):
     return render(request, "events/index.html", context=context)
 
 
-class LocationListView(generic.ListView):
+class LocationListView(LoginRequiredMixin, generic.ListView):
     model = Location
     context_object_name = "location_list"
     template_name = "events/location_list.html"
@@ -53,32 +56,32 @@ class LocationListView(generic.ListView):
         return self.queryset
 
 
-class LocationDetailView(generic.DetailView):
+class LocationDetailView(LoginRequiredMixin, generic.DetailView):
     model = Location
 
 
-class LocationCreateView(generic.CreateView):
-    model = Location
-    success_url = reverse_lazy("events:location-list")
-    template_name = "events/location_form.html"
-    fields = "__all__"
-
-
-class LocationUpdateView(generic.UpdateView):
+class LocationCreateView(LoginRequiredMixin, generic.CreateView):
     model = Location
     success_url = reverse_lazy("events:location-list")
     template_name = "events/location_form.html"
     fields = "__all__"
 
 
-class SportTypeCreateView(generic.CreateView):
+class LocationUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Location
+    success_url = reverse_lazy("events:location-list")
+    template_name = "events/location_form.html"
+    fields = "__all__"
+
+
+class SportTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = SportType
     success_url = reverse_lazy("events:sport-type-list")
     template_name = "events/sport-type_form.html"
     fields = "__all__"
 
 
-class SportTypeListView(generic.ListView):
+class SportTypeListView(LoginRequiredMixin, generic.ListView):
     model = SportType
     context_object_name = "sport_type_list"
     template_name = "events/sport-type_list.html"
@@ -101,13 +104,13 @@ class SportTypeListView(generic.ListView):
         return self.queryset
 
 
-class SportTypeDetailView(generic.DetailView):
+class SportTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = SportType
     context_object_name = "sport_type"
     template_name = "events/sport-type_detail.html"
 
 
-class SportTypeUpdateView(generic.UpdateView):
+class SportTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = SportType
     success_url = reverse_lazy("events:sport-type-list")
     context_object_name = "sport_type"
@@ -115,17 +118,26 @@ class SportTypeUpdateView(generic.UpdateView):
     fields = "__all__"
 
 
-class AthleteCreateView(generic.CreateView):
+class AthleteCreateView(LoginRequiredMixin, generic.CreateView):
     model = Athlete
     success_url = reverse_lazy('events:athlete-list')
-    template_name = "events/athlete_form.html"
+    template_name = "events/athlete_sign_up.html"
     form_class = AthleteCreationForm
 
     def form_valid(self, form):
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(self.request, username=username, password=password)
+
+        if user is not None:
+            login(self.request, user)
+
+        return response
 
 
-class AthleteListView(generic.ListView):
+
+class AthleteListView(LoginRequiredMixin, generic.ListView):
     model = Athlete
     paginate_by = 5
 
