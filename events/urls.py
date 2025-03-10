@@ -12,6 +12,7 @@ from .views import (
     AthleteCreateView,
     AthleteListView,
     AthleteDetailView,
+    AthleteUpdateView,
 )
 
 
@@ -30,4 +31,5 @@ urlpatterns = [
     path("athlete/create/", AthleteCreateView.as_view(), name="athlete-create"),
     path("athletes/", AthleteListView.as_view(), name="athlete-list"),
     path("athlete/<int:pk>/", AthleteDetailView.as_view(), name="athlete-detail"),
+    path("athlete/<int:pk>/update/", AthleteUpdateView.as_view(), name="athlete-update"),
 ]
