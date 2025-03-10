@@ -157,3 +157,8 @@ class AthleteListView(LoginRequiredMixin, generic.ListView):
                 username__icontains=form.cleaned_data["username"]
             )
         return queryset
+
+
+class AthleteDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Athlete
+    template_name = "events/athlete_detail.html"
