@@ -162,3 +162,16 @@ class AthleteListView(LoginRequiredMixin, generic.ListView):
 class AthleteDetailView(LoginRequiredMixin, generic.DetailView):
     model = Athlete
     template_name = "events/athlete_detail.html"
+
+
+class AthleteUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Athlete
+    success_url = reverse_lazy('events:athlete-list')
+    template_name = "events/athlete_update.html"
+    form_class = AthleteUpdateForm
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.pk != self.request.user.pk:
+            raise Http404("You can only update your own profile")
+        return obj
