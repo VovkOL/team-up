@@ -1,8 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
-from django.shortcuts import render
-from django.views import generic
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import generic, View
 from django.contrib import messages
 
 from django.views.generic import CreateView
@@ -175,3 +175,25 @@ class AthleteUpdateView(LoginRequiredMixin, generic.UpdateView):
         if obj.pk != self.request.user.pk:
             raise Http404("You can only update your own profile")
         return obj
+
+
+class AddFriendView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        athlete = get_object_or_404(Athlete, pk=pk)
+        if request.user != athlete:
+            athlete.friends.add(request.user)
+            messages.success(request, f"You have added {athlete.username} to your friends!")
+        else:
+            messages.error(request, "You cannot add yourself as a friend.")
+        return redirect('events:athlete-detail', pk=pk)
+
+
+class RemoveFriendView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        athlete = get_object_or_404(Athlete, pk=pk)
+        if request.user != athlete and request.user in athlete.friends.all():
+            athlete.friends.remove(request.user)
+            messages.success(request, f"You have removed {athlete.username} from your friends!")
+        else:
+            messages.error(request, "You cannot remove yourself or this user is not your friend.")
+        return redirect('events:athlete-detail', pk=pk)
