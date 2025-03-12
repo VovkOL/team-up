@@ -13,6 +13,8 @@ from .views import (
     AthleteListView,
     AthleteDetailView,
     AthleteUpdateView,
+    AddFriendView,
+    RemoveFriendView,
 )
 
 
@@ -32,4 +34,6 @@ urlpatterns = [
     path("athletes/", AthleteListView.as_view(), name="athlete-list"),
     path("athlete/<int:pk>/", AthleteDetailView.as_view(), name="athlete-detail"),
     path("athlete/<int:pk>/update/", AthleteUpdateView.as_view(), name="athlete-update"),
+    path('athlete/<int:pk>/add-friend/', AddFriendView.as_view(), name='add-friend'),
+    path('athlete/<int:pk>/remove-friend/', RemoveFriendView.as_view(), name='remove-friend'),
 ]
