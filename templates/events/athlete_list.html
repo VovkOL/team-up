@@ -1,0 +1,48 @@
+{% extends 'layouts/base-presentation.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %} TeamUp {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block body_class %} athlete-page {% endblock body_class %}
+
+{% block content %}
+  <section class="pt-5 pb-2 mt-5">
+    <div class="container mt-4">
+      <h1>Athlete List</h1>
+      <form method="get" action="" class="mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+        <div class="input-group w-50">
+          {{ search_form|crispy }}
+          <button type="submit" class="btn bg-gradient-primary px-4 py-2 rounded-2" aria-label="Search">🔍</button>
+        </div>
+          <a href="{% url "events:athlete-create" %}" class="btn btn-secondary px-4 py-2 rounded-2">+ Add Athlete</a>
+        </div>
+      </form>
+      {% if athlete_list %}
+        <table class="table">
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>City</th>
+          </tr>
+          {% for athlete in athlete_list %}
+            <tr>
+              <td>
+                <a href="{{ athlete.get_absolute_url }}">{{ athlete.id }}</a>
+              </td>
+              <td>
+                {{ athlete.username }}
+              </td>
+              <td>
+                {% if athlete.location %} {{ athlete.location }} {% else %} No Location{% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}>
