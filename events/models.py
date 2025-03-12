@@ -14,7 +14,7 @@ class Location(models.Model):
         ordering = ("name", )
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.address})"
 
     def get_absolute_url(self):
         return reverse("events:location-detail", args=[str(self.id)])
