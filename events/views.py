@@ -118,7 +118,7 @@ class SportTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     fields = "__all__"
 
 
-class AthleteCreateView(LoginRequiredMixin, generic.CreateView):
+class AthleteCreateView(generic.CreateView):
     model = Athlete
     success_url = reverse_lazy('events:athlete-list')
     template_name = "events/athlete_sign_up.html"
