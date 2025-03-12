@@ -129,7 +129,9 @@ STATICFILES_DIRS = [BASE_DIR / "events" / "static"]
 
 ASSETS_ROOT = "/static/assets"
 
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/events/"
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
