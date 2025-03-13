@@ -9,7 +9,7 @@ from django.views.generic import CreateView
 from rest_framework.reverse import reverse_lazy
 
 from events.forms import LocationSearchForm, SportTypeSearchForm, AthleteCreationForm, AthleteSearchForm, \
-    AthleteUpdateForm
+    AthleteUpdateForm, TrainingSessionForm
 from events.models import Location, SportType, Athlete, TrainingSession
 
 
@@ -197,3 +197,15 @@ class RemoveFriendView(LoginRequiredMixin, View):
         else:
             messages.error(request, "You cannot remove yourself or this user is not your friend.")
         return redirect('events:athlete-detail', pk=pk)
+
+
+class TrainingSessionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = TrainingSession
+    success_url = reverse_lazy("events:training-session-list")
+    template_name = "events/training-session_form.html"
+    form_class = TrainingSessionForm
+
+    def form_valid(self, form):
+        form.instance.host = self.request.user
+        messages.success(self.request, "Training session created successfully!")
+        return super().form_valid(form)
