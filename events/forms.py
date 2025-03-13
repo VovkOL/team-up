@@ -1,8 +1,10 @@
+from django.utils import timezone
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from events.models import Athlete, Location
+from events.models import Athlete, Location, TrainingSession, SportType
 
 
 class LocationSearchForm(forms.Form):
@@ -79,3 +81,21 @@ class AthleteUpdateForm(forms.ModelForm, LocationFilterMixin):
         if Athlete.objects.exclude(pk=self.instance.pk).filter(username=username).exists():
             raise forms.ValidationError("This username is already taken.")
         return username
+
+
+class TrainingSessionForm(forms.ModelForm):
+    class Meta:
+        model = TrainingSession
+        fields = ['sport_type', 'date_time', 'location', 'max_athletes', 'description']
+        widgets = {
+            'date_time': forms.DateTimeInput(attrs={
+                'type': 'datetime-local',
+                'min': timezone.now().strftime('%Y-%m-%dT%H:%M'),
+            }),
+        }
+
+    def clean_date_time(self):
+        date_time = self.cleaned_data['date_time']
+        if date_time < timezone.now():
+            raise ValidationError("You cannot set a date in the past.")
+        return date_time
