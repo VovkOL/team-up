@@ -209,3 +209,9 @@ class TrainingSessionCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.host = self.request.user
         messages.success(self.request, "Training session created successfully!")
         return super().form_valid(form)
+
+
+class TrainingSessionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = TrainingSession
+    context_object_name = "training_session"
+    template_name = "events/training-session_detail.html"
