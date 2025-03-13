@@ -1,0 +1,123 @@
+{% extends "layouts/base-presentation.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="page-header">
+    <div class=" position-absolute fixed-top ms-auto w-50 h-100 rounded-3 z-index-0 d-none d-sm-none d-md-block me-n4"
+         style="background-image: url('{% static "assets/img/sports/Gemini_Generated_Image_nbt5tgnbt5tgnbt5.jpg" %}'); background-size: cover;">
+    </div>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-6 d-flex justify-content-center flex-column">
+          <div class="card card-body d-flex justify-content-center shadow-lg p-5 pb-2 blur align-items-center">
+            <h3 class="text-center">Create Training Session</h3>
+            <form role="form" id="training-session-form" method="post" autocomplete="off">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="row">
+                  <div class="mb-4">
+                    <label>Sport Type *</label>
+                    <div class="input-group">
+                      <select name="sport_type" class="form-control {% if form.sport_type.errors %}is-invalid{% endif %}" required>
+                        <option value="" selected disabled>Select a sport</option>
+                        {% for sport in form.sport_type.field.queryset %}
+                          <option value="{{ sport.pk }}" {% if form.sport_type.value == sport.pk %}selected{% endif %}>
+                            {{ sport.name }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                      {% if form.sport_type.errors %}
+                        <div class="invalid-feedback">
+                          {% for error in form.sport_type.errors %}
+                            {{ error }}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Date & Time *</label>
+                    <div class="input-group">
+                      <input type="datetime-local" name="date_time" class="form-control {% if form.date_time.errors %}is-invalid{% endif %}"
+                             value="{{ form.date_time.value|date:'Y-m-d\TH:i' }}" required>
+                      {% if form.date_time.errors %}
+                        <div class="invalid-feedback">
+                          {% for error in form.date_time.errors %}
+                            {{ error }}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label>Location *</label>
+                    <div class="input-group">
+                      <select name="location" class="form-control {% if form.location.errors %}is-invalid{% endif %}" required>
+                        <option value="" selected disabled>Select a location</option>
+                        {% for location in form.location.field.queryset %}
+                          <option value="{{ location.pk }}" {% if form.location.value == location.pk %}selected{% endif %}>
+                            {{ location.name }} - {{ location.address }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                      {% if form.location.errors %}
+                        <div class="invalid-feedback">
+                          {% for error in form.location.errors %}
+                            {{ error }}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label>Max Athletes *</label>
+                    <div class="input-group">
+                      <input type="number" name="max_athletes" class="form-control {% if form.max_athletes.errors %}is-invalid{% endif %}"
+                             value="{{ form.max_athletes.value|default_if_none:'2' }}" min="2" max="50" required>
+                      {% if form.max_athletes.errors %}
+                        <div class="invalid-feedback">
+                          {% for error in form.max_athletes.errors %}
+                            {{ error }}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <div class="mb-0">
+                    <label>Description (optional)</label>
+                    <div class="input-group">
+                      <textarea name="description" class="form-control {% if form.description.errors %}is-invalid{% endif %}"
+                                rows="3" maxlength="500">{{ form.description.value|default_if_none:'' }}</textarea>
+                      {% if form.description.errors %}
+                        <div class="invalid-feedback">
+                          {% for error in form.description.errors %}
+                            {{ error }}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-check form-switch mb-4">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">&nbsp;</label>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <button type="submit" value="Submit" class="btn bg-gradient-dark w-100">Create Session</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
