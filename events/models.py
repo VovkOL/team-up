@@ -43,7 +43,7 @@ class Athlete(AbstractUser):
         verbose_name_plural = "athletes"
 
     def __str__(self):
-        return f"{self.username}: ({self.first_name} {self.last_name})"
+        return f"{self.username}"
 
     def get_absolute_url(self):
         return reverse("events:athlete-detail", kwargs={"pk": self.pk})
