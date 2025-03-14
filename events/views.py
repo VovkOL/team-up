@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views import generic, View
 from django.contrib import messages
 
@@ -201,9 +202,11 @@ class RemoveFriendView(LoginRequiredMixin, View):
 
 class TrainingSessionCreateView(LoginRequiredMixin, generic.CreateView):
     model = TrainingSession
-    success_url = reverse_lazy("events:training-session-list")
     template_name = "events/training-session_form.html"
     form_class = TrainingSessionForm
+
+    def get_success_url(self):
+        return reverse("events:training-session-detail", kwargs={"pk": self.object.pk})
 
     def form_valid(self, form):
         form.instance.host = self.request.user
