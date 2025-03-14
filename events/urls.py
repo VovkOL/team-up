@@ -17,6 +17,8 @@ from .views import (
     RemoveFriendView,
     TrainingSessionCreateView,
     TrainingSessionDetailView,
+    JoinSessionView,
+    LeaveSessionView,
 )
 
 
@@ -40,5 +42,6 @@ urlpatterns = [
     path("athlete/<int:pk>/remove-friend/", RemoveFriendView.as_view(), name='remove-friend'),
     path("training-session/create/", TrainingSessionCreateView.as_view(), name="training-session-create"),
     path("training-session/<int:pk>/detail/", TrainingSessionDetailView.as_view(), name="training-session-detail"),
-
+    path('training-session/<int:pk>/join/', JoinSessionView.as_view(), name='join-session'),
+    path('training-session/<int:pk>/leave/', LeaveSessionView.as_view(), name='leave-session'),
 ]
