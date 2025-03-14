@@ -16,6 +16,7 @@ from .views import (
     AddFriendView,
     RemoveFriendView,
     TrainingSessionCreateView,
+    TrainingSessionDetailView,
 )
 
 
@@ -38,4 +39,6 @@ urlpatterns = [
     path("athlete/<int:pk>/add-friend/", AddFriendView.as_view(), name='add-friend'),
     path("athlete/<int:pk>/remove-friend/", RemoveFriendView.as_view(), name='remove-friend'),
     path("training-session/create/", TrainingSessionCreateView.as_view(), name="training-session-create"),
+    path("training-session/<int:pk>/detail/", TrainingSessionDetailView.as_view(), name="training-session-detail"),
+
 ]
