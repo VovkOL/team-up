@@ -218,3 +218,25 @@ class TrainingSessionDetailView(LoginRequiredMixin, generic.DetailView):
     model = TrainingSession
     context_object_name = "training_session"
     template_name = "events/training-session_detail.html"
+
+
+class JoinSessionView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        session = get_object_or_404(TrainingSession, pk=pk)
+        if session.athletes.count() < session.max_athletes:
+            session.athletes.add(request.user)
+            messages.success(request, "You have successfully joined the training session!")
+        else:
+            messages.error(request, "The session is already full.")
+        return redirect('events:training-session-detail', pk=pk)
+
+
+class LeaveSessionView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        session = get_object_or_404(TrainingSession, pk=pk)
+        if request.user in session.athletes.all():
+            session.athletes.remove(request.user)
+            messages.success(request, "You have left the training session.")
+        else:
+            messages.error(request, "You are not a participant in this session.")
+        return redirect('events:training-session-detail', pk=pk)
