@@ -30,13 +30,13 @@
           </tr>
           {% for athlete in athlete_list %}
             <tr>
-              <td>
+              <td class="py-3">
                 <a href="{{ athlete.get_absolute_url }}">{{ athlete.id }}</a>
               </td>
-              <td>
+              <td class="py-3">
                 {{ athlete.username }}
               </td>
-              <td>
+              <td class="py-3">
                 {% if athlete.location %} {{ athlete.location }} {% else %} No Location{% endif %}
               </td>
             </tr>
