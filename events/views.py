@@ -264,3 +264,16 @@ class TrainingSessionListView(LoginRequiredMixin, generic.ListView):
                 sport_type__name__icontains=form.cleaned_data["sport_type"]
             )
         return queryset
+
+
+class TrainingSessionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = TrainingSession
+    template_name = "events/training-session_form.html"
+    form_class = TrainingSessionForm
+    success_url = reverse_lazy("events:training-session-list")
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.host.id != self.request.user.pk:
+            raise Http404("You can only update your own training session")
+        return obj
