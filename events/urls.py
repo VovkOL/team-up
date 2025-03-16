@@ -46,5 +46,6 @@ urlpatterns = [
     path("training-sessions/<int:pk>/detail/", TrainingSessionDetailView.as_view(), name="training-session-detail"),
     path("training-sessions/<int:pk>/join/", JoinSessionView.as_view(), name="join-session"),
     path("training-sessions/<int:pk>/leave/", LeaveSessionView.as_view(), name="leave-session"),
-
+    path("training-sessions/", TrainingSessionListView.as_view(), name="training-session-list"),
+    path("training-sessions/<int:pk>/update/", TrainingSessionUpdateView.as_view(), name="training-session-update"),
 ]
