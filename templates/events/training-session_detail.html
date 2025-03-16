@@ -75,7 +75,7 @@
             {% endif %}
           {% endif %}
           {% if request.user == training_session.host %}
-            <a href="{% url 'events:athlete-detail' training_session.pk %}" class="btn btn-outline-secondary">Edit Session</a>
+            <a href="{% url 'events:training-session-update' training_session.pk %}" class="btn btn-outline-secondary">Update Session</a>
           {% endif %}
         </div>
       </div>
