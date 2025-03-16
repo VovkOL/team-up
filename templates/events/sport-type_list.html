@@ -30,17 +30,17 @@
             <th>Max athletes</th>
           </tr>
           {% for sport_type in sport_type_list %}
-            <tr>
-              <td>
+            <tr style="min-height: 50px;">
+              <td class="py-3">
                 <a href="{{ sport_type.get_absolute_url }}">{{ sport_type.id }}</a>
               </td>
-              <td>
+              <td class="py-3">
                 {{ sport_type.name }}
               </td>
-              <td>
+              <td class="py-3">
                 {{ sport_type.min_athletes }}
               </td>
-              <td>
+              <td class="py-3">
                 {{ sport_type.max_athletes }}
               </td>
             </tr>
