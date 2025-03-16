@@ -44,6 +44,9 @@
                         </div>
                         Pages
                       </h6>
+                      <a href="{% url 'events:training-session-list' %}" class="dropdown-item border-radius-md">
+                        Training Session List
+                      </a>
                       <a href="{% url 'events:location-list' %}" class="dropdown-item border-radius-md">
                         Location List
                       </a>
@@ -79,9 +82,11 @@
                       <a href="{% url 'events:athlete-create' %}" class="dropdown-item border-radius-md">
                         Register
                       </a>
-                      <a href="{% url 'events:athlete-detail' pk=user.pk %}" class="dropdown-item border-radius-md">
-                        My profile
-                      </a>
+                      {% if user.is_authenticated %}
+                        <a href="{% url 'events:athlete-detail' pk=user.pk %}" class="dropdown-item border-radius-md">
+                          My profile
+                        </a>
+                      {% endif %}
                     </div>
                     <div class="d-lg-none">
                       <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center px-0">
