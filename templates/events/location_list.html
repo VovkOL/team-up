@@ -30,13 +30,13 @@
           </tr>
           {% for location in location_list %}
             <tr>
-              <td>
+              <td class="py-3">
                 <a href="{{ location.get_absolute_url }}">{{ location.id }}</a>
               </td>
-              <td>
+              <td class="py-3">
                 {{ location.name }}
               </td>
-              <td>
+              <td class="py-3">
                 {{ location.address }}
               </td>
             </tr>
