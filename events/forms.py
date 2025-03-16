@@ -99,3 +99,14 @@ class TrainingSessionForm(forms.ModelForm):
         if date_time < timezone.now():
             raise ValidationError("You cannot set a date in the past.")
         return date_time
+
+
+class TrainingSessionSearchForm(forms.Form):
+    sport_type = forms.CharField(
+        max_length=30,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by sport type"}
+        ),
+    )
