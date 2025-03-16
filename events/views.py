@@ -10,7 +10,7 @@ from django.views.generic import CreateView
 from rest_framework.reverse import reverse_lazy
 
 from events.forms import LocationSearchForm, SportTypeSearchForm, AthleteCreationForm, AthleteSearchForm, \
-    AthleteUpdateForm, TrainingSessionForm
+    AthleteUpdateForm, TrainingSessionForm, TrainingSessionSearchForm
 from events.models import Location, SportType, Athlete, TrainingSession
 
 
@@ -240,3 +240,27 @@ class LeaveSessionView(LoginRequiredMixin, View):
         else:
             messages.error(request, "You are not a participant in this session.")
         return redirect('events:training-session-detail', pk=pk)
+
+
+class TrainingSessionListView(LoginRequiredMixin, generic.ListView):
+    model = TrainingSession
+    template_name = "events/training-session_list.html"
+    context_object_name = "training_sessions"
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super(TrainingSessionListView, self).get_context_data(**kwargs)
+        sport_type = self.request.GET.get("sport_type", "")
+        context["search_form"] = TrainingSessionSearchForm(
+            initial={"sport_type": sport_type}
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        form = TrainingSessionSearchForm(self.request.GET)
+        if form.is_valid():
+            return TrainingSession.objects.filter(
+                sport_type__name__icontains=form.cleaned_data["sport_type"]
+            )
+        return queryset
