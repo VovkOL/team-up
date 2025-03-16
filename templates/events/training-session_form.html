@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-lg-6 d-flex justify-content-center flex-column">
           <div class="card card-body d-flex justify-content-center shadow-lg p-5 pb-2 blur align-items-center">
-            <h3 class="text-center">Create Training Session</h3>
+            <h3 class="text-center">{{ object|yesno:"Update, Create" }} Training Session</h3>
             <form role="form" id="training-session-form" method="post" autocomplete="off">
               {% csrf_token %}
               <div class="card-body">
@@ -109,7 +109,7 @@
                       </div>
                     </div>
                     <div class="col-md-12">
-                      <button type="submit" value="Submit" class="btn bg-gradient-dark w-100">Create Session</button>
+                      <button type="submit" value="Submit" class="btn bg-gradient-dark w-100">{{ object|yesno:"Update, Create" }} Session</button>
                     </div>
                   </div>
                 </div>
