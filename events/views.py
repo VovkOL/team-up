@@ -284,3 +284,15 @@ class TrainingSessionUpdateView(LoginRequiredMixin, generic.UpdateView):
         if obj.host.id != self.request.user.pk:
             raise Http404("You can only update your own training session")
         return obj
+
+
+class TrainingSessionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = TrainingSession
+    success_url = reverse_lazy("events:training-session-list")
+    template_name = "events/training-session_confirm_delete.html"
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.host.id != self.request.user.pk:
+            raise Http404("You can only update your own training session")
+        return obj
