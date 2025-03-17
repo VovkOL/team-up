@@ -20,7 +20,7 @@
       <!-- Основний блок -->
       <div class="card shadow-lg p-4">
         <!-- Заголовок і дата -->
-        <h1 class="card-title mb-4 mt-3">{{ training_session.sport_type.name }}</h1>
+        <h1 class="card-title mb-4 mt-4">{{ training_session.sport_type.name }}</h1>
         <p class="text-muted mb-4">{{ training_session.date_time|date:"F d, Y H:i" }}</p>
 
         <!-- Інформація про сесію -->
@@ -62,20 +62,25 @@
         {% endif %}
 
         <!-- Кнопки дій -->
-        <div class="d-flex gap-3">
-          {% if request.user in training_session.athletes.all %}
-            <!-- Користувач уже приєднався -->
-            <a href="{% url 'events:leave-session' training_session.pk %}" class="btn btn-warning">Leave Session</a>
-          {% else %}
-            <!-- Користувач ще не приєднався -->
-            {% if training_session.athletes.count < training_session.max_athletes %}
-              <a href="{% url 'events:join-session' training_session.pk %}" class="btn btn-primary">Join Session</a>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex gap-3">
+            {% if request.user in training_session.athletes.all %}
+              <!-- Користувач уже приєднався -->
+              <a href="{% url 'events:leave-session' training_session.pk %}" class="btn btn-warning">Leave Session</a>
             {% else %}
-              <button class="btn btn-primary disabled" disabled>Session Full</button>
+              <!-- Користувач ще не приєднався -->
+              {% if training_session.athletes.count < training_session.max_athletes %}
+                <a href="{% url 'events:join-session' training_session.pk %}" class="btn btn-primary">Join Session</a>
+              {% else %}
+                <button class="btn btn-primary disabled" disabled>Session Full</button>
+              {% endif %}
             {% endif %}
-          {% endif %}
+            {% if request.user == training_session.host %}
+              <a href="{% url 'events:training-session-update' training_session.pk %}" class="btn btn-outline-secondary">Update Session</a>
+            {% endif %}
+          </div>
           {% if request.user == training_session.host %}
-            <a href="{% url 'events:training-session-update' training_session.pk %}" class="btn btn-outline-secondary">Update Session</a>
+            <a href="{% url 'events:training-session-delete' training_session.pk %}" class="btn btn-outline-danger">Delete Session</a>
           {% endif %}
         </div>
       </div>
