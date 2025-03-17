@@ -164,6 +164,13 @@ class AthleteDetailView(LoginRequiredMixin, generic.DetailView):
     model = Athlete
     template_name = "events/athlete_detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        athlete = self.get_object()
+        context["organized_sessions"] = athlete.hosted_sessions.all()
+        context["participating_sessions"] = athlete.joined_sessions.all()
+        return context
+
 
 class AthleteUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Athlete
