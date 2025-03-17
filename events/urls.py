@@ -21,6 +21,7 @@ from .views import (
     LeaveSessionView,
     TrainingSessionListView,
     TrainingSessionUpdateView,
+    TrainingSessionDeleteView,
 )
 
 
@@ -43,9 +44,10 @@ urlpatterns = [
     path("athletes/<int:pk>/add-friend/", AddFriendView.as_view(), name="add-friend"),
     path("athletes/<int:pk>/remove-friend/", RemoveFriendView.as_view(), name="remove-friend"),
     path("training-sessions/create/", TrainingSessionCreateView.as_view(), name="training-session-create"),
-    path("training-sessions/<int:pk>/detail/", TrainingSessionDetailView.as_view(), name="training-session-detail"),
+    path("training-sessions/<int:pk>/", TrainingSessionDetailView.as_view(), name="training-session-detail"),
     path("training-sessions/<int:pk>/join/", JoinSessionView.as_view(), name="join-session"),
     path("training-sessions/<int:pk>/leave/", LeaveSessionView.as_view(), name="leave-session"),
     path("training-sessions/", TrainingSessionListView.as_view(), name="training-session-list"),
     path("training-sessions/<int:pk>/update/", TrainingSessionUpdateView.as_view(), name="training-session-update"),
+    path("training-sessions/<int:pk>/delete/", TrainingSessionDeleteView.as_view(), name="training-session-delete"),
 ]
