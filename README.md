@@ -11,14 +11,14 @@ Users can create profiles, manage friends, and participate in training events ba
 
 Python3 must be already installed
 
-'''shell
+```shell
 git clone https://github.com/VovkOL/team-up
 cd team-up
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python manage.py runserver # start Django Server
-'''
+```
 
 ## Features
 - **Athlete Profiles**: Users can create profiles with their location and view friends.
