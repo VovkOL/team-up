@@ -5,7 +5,7 @@ Users can create profiles, manage friends, and participate in training events ba
 
 ## Check it out
 
-[TeamUp project deployed to Render](https://team-up.render.com/)
+[TeamUp project deployed to Render](https://team-up-o1lv.onrender.com/athletes//)
 
 ## Installation 
 
