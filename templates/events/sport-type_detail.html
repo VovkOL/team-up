@@ -1,0 +1,39 @@
+{% extends "layouts/base-presentation.html" %}
+{% load static %}
+
+{% block title %}Sport Type Details{% endblock %}
+
+{% block content %}
+  <section class="pt-3 pb-5 mt-5">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-4">
+            <h1 class="text-gradient text-primary fw-bold">Sport Type Details</h1>
+            <p class="text-muted">Explore the details of this sport type, including the minimum and maximum number of athletes required.</p>
+          </div>
+          <div class="card shadow-lg border-0 p-3 rounded-4 blur">
+            <div class="card-body">
+              <h2 class="text-gradient text-primary text-center fw-bold mb-4">{{ sport_type.name }}</h2>
+              <hr class="mx-auto w-50">
+              <div class="row text-center">
+                <div class="col-md-6 p-4 border-end">
+                  <h5 class="text-muted">Minimum Athletes</h5>
+                  <p class="fw-bold display-5 text-primary">{{ sport_type.min_athletes }}</p>
+                </div>
+                <div class="col-md-6 p-4">
+                  <h5 class="text-muted">Maximum Athletes</h5>
+                  <p class="fw-bold display-5 text-primary">{{ sport_type.max_athletes }}</p>
+                </div>
+              </div>
+              <div class="mt-5 d-flex justify-content-center gap-4">
+                <a href="{% url 'events:sport-type-list' %}" class="btn btn-outline-secondary px-5 py-3 rounded-3">Back to List</a>
+                <a href="{% url 'events:sport-type-update' sport_type.id %}" class="btn btn-primary px-5 py-3 rounded-3 shadow-sm">Update</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

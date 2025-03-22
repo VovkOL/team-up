@@ -1,0 +1,402 @@
+[
+{
+    "model": "events.location",
+    "pk": 1,
+    "fields": {
+        "name": "Test Location",
+        "address": "123 Street",
+        "description": null
+    }
+},
+{
+    "model": "events.location",
+    "pk": 2,
+    "fields": {
+        "name": "Odesa",
+        "address": "Naberezhna13",
+        "description": "Tennis courts"
+    }
+},
+{
+    "model": "events.location",
+    "pk": 3,
+    "fields": {
+        "name": "Ternopil",
+        "address": "Okruzhna 10",
+        "description": "Swiming pool\r\ntyuiop[\r\nfucfc\r\nvgvyvctyv\r\nvgccxdxtcf\r\ngovt\r\nbvytg\r\ntftfryd\r\nvfjtvghv\r\nhvivut\r\nyutrdf\r\nhjgylftu\r\nhvycy\r\n gvcfc"
+    }
+},
+{
+    "model": "events.location",
+    "pk": 4,
+    "fields": {
+        "name": "Kyiv",
+        "address": "Tarasa Shevchenko 42",
+        "description": "In the vast realm of digital possibilities, where pixels dance in a symphony of colors and algorithms weave intricate tapestries of connection, lies a sphere of boundless potential. In this virtual landscape, where boundaries dissolve and ideas collide, we embark on a journey to explore the depths of human ingenuity and unravel the mysteries of technological progress. Imagine a world where information flows freely, where knowledge is accessible to all, regardless of geographical borders or socio"
+    }
+},
+{
+    "model": "events.location",
+    "pk": 5,
+    "fields": {
+        "name": "Polyanitsa",
+        "address": "All village",
+        "description": "Ski resort"
+    }
+},
+{
+    "model": "events.location",
+    "pk": 6,
+    "fields": {
+        "name": "Lviv",
+        "address": "Ivana Franko 44",
+        "description": "Wrestling hall"
+    }
+},
+{
+    "model": "events.location",
+    "pk": 7,
+    "fields": {
+        "name": "Lviv",
+        "address": "Ryinok square",
+        "description": "Gym"
+    }
+},
+{
+    "model": "events.location",
+    "pk": 8,
+    "fields": {
+        "name": "Kyiv",
+        "address": "Truhanov island",
+        "description": "Volleyball"
+    }
+},
+{
+    "model": "events.location",
+    "pk": 9,
+    "fields": {
+        "name": "jj",
+        "address": "",
+        "description": ""
+    }
+},
+{
+    "model": "events.sporttype",
+    "pk": 1,
+    "fields": {
+        "name": "Tennis",
+        "min_athletes": 42,
+        "max_athletes": null
+    }
+},
+{
+    "model": "events.sporttype",
+    "pk": 2,
+    "fields": {
+        "name": "Football",
+        "min_athletes": null,
+        "max_athletes": null
+    }
+},
+{
+    "model": "events.sporttype",
+    "pk": 3,
+    "fields": {
+        "name": "Bjj",
+        "min_athletes": 2,
+        "max_athletes": 22
+    }
+},
+{
+    "model": "events.sporttype",
+    "pk": 4,
+    "fields": {
+        "name": "jkl",
+        "min_athletes": 88,
+        "max_athletes": null
+    }
+},
+{
+    "model": "events.sporttype",
+    "pk": 5,
+    "fields": {
+        "name": "Volleyball",
+        "min_athletes": 6,
+        "max_athletes": 11
+    }
+},
+{
+    "model": "events.sporttype",
+    "pk": 6,
+    "fields": {
+        "name": "Basketball",
+        "min_athletes": 9,
+        "max_athletes": 20
+    }
+},
+{
+    "model": "events.athlete",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$j2UMgv4oddMezCoojHSn5w$KUZCbtFeFL010pZPFowyG29GOryo+x5hrTX6OFK8MgA=",
+        "last_login": "2025-03-03T15:45:01.577Z",
+        "is_superuser": true,
+        "username": "alex",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-03-03T15:44:50.650Z",
+        "location": null,
+        "groups": [],
+        "user_permissions": [],
+        "friends": []
+    }
+},
+{
+    "model": "events.athlete",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$8zTWmADifzO41PDfi9WWE1$vtRZ8DH1RfmW/3LfuoAv3gBYzo+mN0j3Wg3hJsX+1S4=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Oleh",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-09T10:29:51.017Z",
+        "location": 2,
+        "groups": [],
+        "user_permissions": [],
+        "friends": []
+    }
+},
+{
+    "model": "events.athlete",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$HRtBlMZgRc43UmADQs6YfE$4kADvPYCL3ZfhNp3kskLHBbyAqKc1Ldtmt/0oCnuSPM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Hrisha",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-09T10:43:10.662Z",
+        "location": 6,
+        "groups": [],
+        "user_permissions": [],
+        "friends": []
+    }
+},
+{
+    "model": "events.athlete",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$pNdYDmKokduWr8Yt0tZHKe$B0hm/G0TuPA0HNNz2cHc1ko9qjvrF6qoLhA0jXf0MSY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Joe",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-10T12:09:28.336Z",
+        "location": 2,
+        "groups": [],
+        "user_permissions": [],
+        "friends": [
+            6
+        ]
+    }
+},
+{
+    "model": "events.athlete",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$SP04m3LthlX6mU1WTA2898$w8Klol583rZ0xK5CAR3n26sWcddYxuR72gGP7MrVYUU=",
+        "last_login": "2025-03-16T10:13:49.759Z",
+        "is_superuser": false,
+        "username": "jack",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-10T12:58:55.317Z",
+        "location": 4,
+        "groups": [],
+        "user_permissions": [],
+        "friends": []
+    }
+},
+{
+    "model": "events.athlete",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$fJRzrpDYJEYtffyufjHpAn$Q0xgC/B0egl8RUiDgKcFoKVBluQVcqA+kNl0OgujM6s=",
+        "last_login": "2025-03-19T15:50:19.299Z",
+        "is_superuser": false,
+        "username": "Fedir",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-10T13:52:09.355Z",
+        "location": 2,
+        "groups": [],
+        "user_permissions": [],
+        "friends": [
+            4
+        ]
+    }
+},
+{
+    "model": "events.athlete",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$JN8fGiELsw55zd1R62MfbE$d/DOSO9lXAlG1w3/9QIMezj76IahWUkXkF46NfDYthk=",
+        "last_login": "2025-03-17T11:54:04.813Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-03-17T11:53:53.774Z",
+        "location": null,
+        "groups": [],
+        "user_permissions": [],
+        "friends": []
+    }
+},
+{
+    "model": "events.athlete",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$9TJHJCuZPGGl5c5rFNDpHu$I4y/MibOqcXvQytT+PscdUBZ5lpdCcD+LTZMSx/KyJI=",
+        "last_login": "2025-03-21T12:40:13.348Z",
+        "is_superuser": false,
+        "username": "den",
+        "first_name": "Denis",
+        "last_name": "Mint",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-21T12:40:11.836Z",
+        "location": 3,
+        "groups": [],
+        "user_permissions": [],
+        "friends": []
+    }
+},
+{
+    "model": "events.trainingsession",
+    "pk": 2,
+    "fields": {
+        "sport_type": 3,
+        "date_time": "2025-03-15T21:32:00Z",
+        "location": 6,
+        "host": 6,
+        "max_athletes": 5,
+        "description": "",
+        "athletes": [
+            6
+        ]
+    }
+},
+{
+    "model": "events.trainingsession",
+    "pk": 3,
+    "fields": {
+        "sport_type": 6,
+        "date_time": "2025-03-22T21:09:00Z",
+        "location": 8,
+        "host": 6,
+        "max_athletes": 2,
+        "description": "",
+        "athletes": [
+            6
+        ]
+    }
+},
+{
+    "model": "events.trainingsession",
+    "pk": 4,
+    "fields": {
+        "sport_type": 1,
+        "date_time": "2025-03-15T10:00:00Z",
+        "location": 2,
+        "host": 6,
+        "max_athletes": 3,
+        "description": "",
+        "athletes": []
+    }
+},
+{
+    "model": "events.trainingsession",
+    "pk": 5,
+    "fields": {
+        "sport_type": 5,
+        "date_time": "2025-03-16T10:00:00Z",
+        "location": 6,
+        "host": 6,
+        "max_athletes": 7,
+        "description": "",
+        "athletes": [
+            6
+        ]
+    }
+},
+{
+    "model": "events.trainingsession",
+    "pk": 6,
+    "fields": {
+        "sport_type": 6,
+        "date_time": "2025-03-15T10:03:00Z",
+        "location": 5,
+        "host": 6,
+        "max_athletes": 11,
+        "description": "",
+        "athletes": [
+            6
+        ]
+    }
+},
+{
+    "model": "events.trainingsession",
+    "pk": 7,
+    "fields": {
+        "sport_type": 2,
+        "date_time": "2025-03-23T10:08:00Z",
+        "location": 4,
+        "host": 6,
+        "max_athletes": 21,
+        "description": "",
+        "athletes": [
+            6
+        ]
+    }
+},
+{
+    "model": "events.trainingsession",
+    "pk": 8,
+    "fields": {
+        "sport_type": 6,
+        "date_time": "2025-03-23T20:25:00Z",
+        "location": 7,
+        "host": 6,
+        "max_athletes": 2,
+        "description": "",
+        "athletes": []
+    }
+}
+]

@@ -1,0 +1,35 @@
+{% extends 'layouts/base-presentation.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %} TeamUp - Delete Training Session {% endblock title %}
+
+{% block body_class %} delete-session-page {% endblock body_class %}
+
+{% block content %}
+  <section class="pt-5 pb-5 mt-5">
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card shadow-sm">
+            <div class="card-body text-center">
+              <h2 class="card-title mb-4">Confirm Deletion</h2>
+              <p class="text-muted">Are you sure you want to delete the training session?</p>
+              <p class="fw-bold">Sport Type: {{ object.sport_type.name }}</p>
+              <p>Date & Time: {{ object.date_time|date:"M d, Y H:i" }}</p>
+              <p>Location: {{ object.location.name }} - {{ object.location.address|truncatechars:20 }}</p>
+              <p>Participants: {{ object.athletes.count }} / {{ object.max_athletes }}</p>
+
+              <form method="post" action="">
+                {% csrf_token %}
+                <div class="mt-4">
+                  <button type="submit" class="btn btn-danger px-4 py-2 me-2">Yes, Delete</button>
+                  <a href="{% url 'events:training-session-list' %}" class="btn btn-secondary px-4 py-2">No, Cancel</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

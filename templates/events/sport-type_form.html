@@ -1,0 +1,95 @@
+{% extends "layouts/base-presentation.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="page-header">
+    <div class="position-absolute fixed-top ms-auto w-50 h-100 rounded-3 z-index-0 d-none d-sm-none d-md-block me-n4"
+         style="background-image: url('{% static "assets/img/sports/Gemini_Sport-Types.jpg" %}'); background-size: cover;">
+    </div>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-7 d-flex justify-content-center flex-column">
+          <div class="card card-body d-flex justify-content-center shadow-lg p-5 blur align-items-center">
+            <h3 class="text-center">{{ object|yesno:"Update, Create" }} Sport Type</h3>
+            <form role="form" id="sport-type-form" method="post" autocomplete="off">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="row">
+                  <div class="mb-4">
+                    <label>Name</label>
+                    <div class="input-group">
+                      <input type="text"
+                             class="form-control {% if form.name.errors %}is-invalid{% endif %}"
+                             name="name"
+                             value="{{ form.name.value|default_if_none:'' }}"
+                             placeholder="Enter sport name">
+                      {% if form.name.errors %}
+                        <div class="invalid-feedback">
+                          {% for error in form.name.errors %}
+                            {{ error }}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label>Minimum athletes</label>
+                  <div class="input-group">
+                    <input type="number"
+                           class="form-control {% if form.min_athletes.errors %}is-invalid{% endif %}"
+                           min="1"
+                           max="22"
+                           name="min_athletes"
+                           value="{{ form.min_athletes.value|default_if_none:'' }}"
+                           placeholder="Enter min amount of athletes">
+                    {% if form.min_athletes.errors %}
+                      <div class="invalid-feedback">
+                        {% for error in form.min_athletes.errors %}
+                          {{ error }}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                    <label>Maximum Athletes</label>
+                    <div class="input-group">
+                      <input type="number"
+                             class="form-control {% if form.max_athletes.errors %}is-invalid{% endif %}"
+                             min="1"
+                             max = "22"
+                             name="max_athletes"
+                             value="{{ form.max_athletes.value|default_if_none:'' }}"
+                             placeholder="Enter max amount of athletes">
+                      {% if form.max_athletes.errors %}
+                        <div class="invalid-feedback">
+                          {% for error in form.max_athletes.errors %}
+                            {{ error }}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-check form-switch mb-4">
+                      <label class="form-check-label" for="flexSwitchCheckDefault">⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <button type="submit" value="Submit" class="btn bg-gradient-dark w-100">Submit</button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
